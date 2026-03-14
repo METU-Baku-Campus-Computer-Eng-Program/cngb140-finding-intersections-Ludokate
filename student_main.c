@@ -25,10 +25,44 @@ int main() {
          3. Store the common numbers in the 'intersection' array.
     */
     //----------------------------------------------------------------//
-    {
+    
+    // Find intersection
+    for(i = 0; i < n1; i++) {
+        for(j = 0; j < n2; j++) {
+            if(set1[i] == set2[j]) {
 
+                // Check if already in intersection
+                int exists = 0;
+                for(k = 0; k < count; k++) {
+                    if(intersection[k] == set1[i]) {
+                        exists = 1;
+                        break;
+                    }
+                }
+
+                if(!exists) {
+                    intersection[count] = set1[i];
+                    count++;
+                }
+                break; // move to next element in set1
+            }
+        }
     }
+
+    // Sort the intersection array in increasing order
+    for(i = 0; i < count - 1; i++) {
+        for(j = i + 1; j < count; j++) {
+            if(intersection[i] > intersection[j]) {
+                int temp = intersection[i];
+                intersection[i] = intersection[j];
+                intersection[j] = temp;
+            }
+        }
+    }
+    
     //----------------------------------------------------------------//
+
+    // Print intersection result
     for(i = 0; i < count; i++) {
         printf("%d ", intersection[i]);
     }
